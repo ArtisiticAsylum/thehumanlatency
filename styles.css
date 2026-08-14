@@ -11,6 +11,9 @@
   --card:#F5EDD8;
   --orange:#C05B2B;
   --orange-deep:#A3491F;
+  /* the grain, reusable — any coloured surface should carry it too, or it
+     reads as flat plastic sitting on top of textured paper */
+  --grain:url("media/paper.jpg");
   --ink:#251D15;
   --gold:#B9902C;
   --grey:#8B857A;
@@ -19,6 +22,15 @@
   --serif-body:"Spectral",Georgia,"Times New Roman",serif;
   --sans:"Inter",system-ui,-apple-system,Arial,sans-serif;
 }
+
+/* ---------- accent themes (preview) ----------
+   Everything accent-coloured resolves through --orange / --orange-deep, so one
+   variable swap recolours the whole site. The collage cutouts carry their
+   accent baked into the pixels, so each theme also has its own recoloured set
+   of art files — theme.js swaps those in alongside. */
+[data-accent="teal"] {--orange:#2E8F8B;--orange-deep:#226E6B}
+[data-accent="moss"] {--orange:#67824C;--orange-deep:#4F663A}
+[data-accent="ochre"]{--orange:#A58833;--orange-deep:#866C27}
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -182,7 +194,10 @@ section{padding:72px 0}
 .hero-film::before{
   content:"";position:absolute;z-index:0;left:52%;top:50%;
   transform:translate(-50%,-50%);
-  width:438px;height:438px;border-radius:50%;background:var(--orange);
+  width:438px;height:438px;border-radius:50%;
+  background-color:var(--orange);
+  background-image:var(--grain);background-size:560px 560px;
+  background-blend-mode:multiply;
 }
 .hero-film .film{position:relative;z-index:2;transform:rotate(-1.4deg)}
 
@@ -286,7 +301,9 @@ section{padding:72px 0}
    tear strip at each edge, and a plain block filling the middle. */
 .quote-band{
   position:relative;overflow:hidden;
-  background:var(--orange);color:var(--cream);
+  background-color:var(--orange);color:var(--cream);
+  background-image:var(--grain);background-size:560px 560px;
+  background-blend-mode:multiply;
   padding:96px 0 104px;text-align:center;
 }
 .quote-band,.letter-band{
@@ -326,7 +343,11 @@ section{padding:72px 0}
 /* ============================================================
    NEWSLETTER BAR — orange band
    ============================================================ */
-.letter-band{background:var(--orange);color:var(--cream);padding:92px 0 96px}
+.letter-band{
+  background-color:var(--orange);color:var(--cream);padding:92px 0 96px;
+  background-image:var(--grain);background-size:560px 560px;
+  background-blend-mode:multiply;
+}
 .letter-band h2{color:var(--cream)}
 .letter-band p{max-width:52ch;color:#F7E9DC}
 /* Beehiiv injects its own markup here and we do not control its styling.
@@ -505,4 +526,29 @@ section{padding:72px 0}
 }
 @media (max-width:480px){
   .steps{grid-template-columns:1fr}
+}
+
+/* ============================================================
+   ACCENT PREVIEW SWITCHER — temporary, remove with theme.js
+   ============================================================ */
+.accent-pick{
+  position:fixed;left:18px;bottom:18px;z-index:70;
+  background:var(--card);border:1px solid var(--grey);border-radius:2px;
+  padding:10px 12px 11px;
+  box-shadow:0 2px 0 rgba(37,29,21,.10),4px 5px 0 rgba(37,29,21,.06);
+}
+.accent-pick .label{display:block;margin-bottom:8px;font-size:9.5px}
+.accent-row{display:flex;gap:7px}
+.accent-row button{
+  width:26px;height:26px;border-radius:50%;cursor:pointer;
+  border:1px solid rgba(37,29,21,.25);padding:0;
+  transition:transform .12s ease,box-shadow .12s ease;
+}
+.accent-row button:hover{transform:scale(1.12)}
+.accent-row button[aria-pressed="true"]{
+  box-shadow:0 0 0 2px var(--cream),0 0 0 3.5px var(--ink);
+}
+@media (max-width:760px){
+  .accent-pick{left:12px;bottom:84px;padding:8px 10px 9px}
+  .accent-row button{width:22px;height:22px}
 }
