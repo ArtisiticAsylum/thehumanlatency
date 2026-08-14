@@ -1,0 +1,4 @@
+# Not ready to be found yet. This is a request, not a lock —
+# see CLAUDE.md for why a GitHub Pages site cannot be password-protected.
+User-agent: *
+Disallow: /
