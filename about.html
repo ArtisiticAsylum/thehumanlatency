@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About — The Human Latency</title>
+<meta name="description" content="The Human Latency explores the hidden systems that shape the journey from intent to outcome, and how we might narrow the gap.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;1,300&family=Inter:wght@500;600&family=Spectral:wght@300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="The Human Latency — home">
+      <span class="mark m-sm" aria-hidden="true"><span class="sq"></span><span class="dots"><b></b></span><span class="ci"></span></span>
+      <span class="wordmark">The Human Latency</span>
+    </a>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="vault.html">Vault</a>
+      <a href="work.html">Work</a>
+      <a href="essays.html">Essays</a>
+      <a href="about.html" class="current" aria-current="page">About</a>
+      <a class="btn small" href="index.html#letter">Get the letter</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- Canonical paragraph -->
+  <section class="page-hero">
+    <div class="wrap">
+      <div class="label orange">About</div>
+      <h1>What this is.</h1>
+      <blockquote class="pullquote">We live in the space between what we intend and what we achieve. Policies, technologies, organisations and individuals are all judged by outcomes, yet most effort is spent on intentions. The Human Latency explores the hidden systems that shape the journey from one to the other, and how we might narrow the gap.</blockquote>
+    </div>
+  </section>
+
+  <!-- Founding story -->
+  <section>
+    <div class="wrap">
+      <div class="label orange">The founding idea</div>
+      <h2>Intelligence is the distance between intent and outcome.</h2>
+      <p style="max-width:60ch">The Human Latency began with that one sentence, written in the margin of a project review that had gone politely, thoroughly wrong. The plan had been good. The people had been good. The outcome was neither. What sat between them was a set of hidden systems nobody had drawn — and once you start drawing them, you cannot stop. This publication, the Vault, and the client work all come from the same habit: mapping the gap, then quietly narrowing it.</p>
+    </div>
+  </section>
+
+  <!-- Founder -->
+  <section style="border-top:1px solid var(--hairline)">
+    <div class="wrap">
+      <div class="founder">
+        <!-- Portrait slot, deliberately empty until there is a real photograph to
+             put here: newsprint cutout treatment, never AI-generated. A generated
+             stand-in figure would be a lie about a real person. -->
+        <div>
+          <div class="label orange">The founder</div>
+          <h2>One person, many filing cabinets.</h2>
+          <p style="max-width:52ch">Based in New Zealand. Two decades inside large programmes and small businesses, watching intent turn into outcome — sometimes gracefully, usually not. Now writing about the gap and building the tools that close it, one plain-text system at a time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Worldview -->
+  <section style="border-top:1px solid var(--hairline)">
+    <div class="wrap">
+      <div class="label orange">The worldview</div>
+      <h2>Five beliefs, filed.</h2>
+      <ol class="beliefs">
+        <li>Outcomes are the only honest measure of a system.</li>
+        <li>Most failure is friction, not malice.</li>
+        <li>Human judgement belongs in the gap — design for it, never around it.</li>
+        <li>Your tools should live on your machine and answer to you.</li>
+        <li>Small, boring systems outlast grand, fragile ones.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Proof -->
+  <section style="border-top:1px solid var(--hairline)">
+    <div class="wrap">
+      <div class="label orange">Quiet proof</div>
+      <p style="max-width:60ch;margin-bottom:24px">A $600M programme delivered. More than 40,000 permits processed. Systems now running, unattended, in businesses and households across Aotearoa. If you would like one of your own, <a href="work.html">this is how we work</a>.</p>
+      <a class="btn ghost" href="work.html">How we work</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="mark m-md" aria-hidden="true"><span class="sq"></span><span class="dots"><b></b></span><span class="ci"></span></div>
+    <div class="ellipsis" aria-hidden="true"><span></span><b></b><span></span></div>
+    <p class="bio">The Human Latency explores the hidden systems between intent and outcome — and builds quiet, local-first tools that help people narrow the gap.</p>
+    <nav class="foot-nav" aria-label="Footer">
+      <a href="index.html">Home</a>
+      <a href="vault.html">Vault</a>
+      <a href="work.html">Work</a>
+      <a href="essays.html">Essays</a>
+      <a href="about.html">About</a>
+    </nav>
+    <div class="foot-sig">The Human Latency · thehumanlatency</div>
+  </div>
+</footer>
+
+<div class="sticky-cta"><a class="btn" href="vault.html">Open the Vault</a></div>
+
+<script>
+(function(){
+  var t=document.querySelector('.nav-toggle'),n=document.querySelector('.site-nav');
+  if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);});}
+})();
+</script>
+</body>
+</html>

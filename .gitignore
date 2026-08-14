@@ -1,0 +1,6 @@
+# Internal working notes — never publish. The repo is public so GitHub Pages
+# can serve it for free, which means anything committed here is world-readable.
+CLAUDE.md
+STRIPE-PRODUCTS.md
+_preview/
+*.zip

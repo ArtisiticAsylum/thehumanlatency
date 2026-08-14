@@ -1,0 +1,508 @@
+/* ============================================================
+   THE HUMAN LATENCY — Edition 2.0 shared stylesheet
+   Warm paper. Calm, editorial, archival, fast.
+   Palette: 60% cream / 25% burnt orange / 10% ink / <=4% grey / <=3% gold
+   ============================================================ */
+
+:root{
+  /* aged manual stock — yellower than the brand guide's cream, on Aye's call
+     2026-08-15. The guide still says #F1EBDC; see CLAUDE.md before reverting. */
+  --cream:#EFE5CD;
+  --card:#F5EDD8;
+  --orange:#C05B2B;
+  --orange-deep:#A3491F;
+  --ink:#251D15;
+  --gold:#B9902C;
+  --grey:#8B857A;
+  --hairline:rgba(37,29,21,.16);
+  --serif-display:"Fraunces",Georgia,"Times New Roman",serif;
+  --serif-body:"Spectral",Georgia,"Times New Roman",serif;
+  --sans:"Inter",system-ui,-apple-system,Arial,sans-serif;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+[hidden]{display:none!important}
+body{
+  /* real paper, lifted from the collage plates the films were built from.
+     the tile is normalised to white so it multiplies the brand cream
+     rather than replacing it — the colour stays exact, the grain is added. */
+  background-color:var(--cream);
+  background-image:url("media/paper.jpg");
+  background-size:560px 560px;
+  background-blend-mode:multiply;
+  color:var(--ink);
+  font-family:var(--serif-body);
+  font-weight:300;
+  font-size:18px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%}
+a{color:var(--orange);text-decoration:none}
+a:hover{color:var(--orange-deep)}
+p{margin:0 0 1em}
+ul,ol{margin:0 0 1em 1.2em}
+h1,h2,h3{font-family:var(--serif-display);font-weight:300;line-height:1.15;margin:0 0 .5em}
+h1{font-size:clamp(38px,5.6vw,62px);line-height:1.06;letter-spacing:-.005em}
+h2{font-size:clamp(27px,3.6vw,38px)}
+h3{font-size:22px}
+.tagline{font-family:var(--serif-display);font-style:italic;font-weight:300;color:var(--grey);letter-spacing:.04em}
+/* the headline turns orange where the sentence turns — intent in ink,
+   consequence in burnt orange. one sentence, two temperatures. */
+.turn{color:var(--orange)}
+
+/* halftone dot field — the printed-matter texture from the brand plates */
+.dots-field{
+  position:absolute;pointer-events:none;
+  background-image:radial-gradient(var(--orange) 1.6px,transparent 1.6px);
+  background-size:13px 13px;opacity:.5;
+}
+
+/* rule · gold dot · rule — the section divider from the brand mockup */
+.rule-dot{display:flex;align-items:center;justify-content:center;gap:16px;margin:0 0 20px}
+.rule-dot::before,.rule-dot::after{content:"";height:1px;width:74px;background:var(--hairline)}
+.rule-dot i{width:7px;height:7px;border-radius:50%;background:var(--gold)}
+.centred{text-align:center}
+.centred p{margin-left:auto;margin-right:auto}
+
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+section{padding:72px 0}
+
+/* ---------- utility label / small caps ---------- */
+.label{
+  font-family:var(--sans);font-weight:600;font-size:11px;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--grey);
+}
+.label.orange{color:var(--orange)}
+.meta{font-family:var(--sans);font-weight:500;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--grey)}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-block;cursor:pointer;
+  font-family:var(--sans);font-weight:600;font-size:12px;
+  letter-spacing:.18em;text-transform:uppercase;
+  background:var(--orange);color:var(--cream);
+  border:1px solid var(--orange);
+  padding:14px 26px;border-radius:2px;
+  transition:background .15s ease,border-color .15s ease,color .15s ease;
+}
+.btn:hover{background:var(--orange-deep);border-color:var(--orange-deep);color:var(--cream)}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--ink)}
+.btn.ghost:hover{color:var(--orange-deep);border-color:var(--orange-deep);background:transparent}
+.btn.small{padding:10px 18px;font-size:11px}
+.btn.inverse{background:var(--ink);border-color:var(--ink);color:var(--cream)}
+.btn.inverse:hover{background:#3a2f22;border-color:#3a2f22}
+/* Not-yet-live actions. A button that 404s costs more trust than one that
+   admits it isn't ready — these stay until the real Stripe/Cal/GitHub links
+   exist, then become ordinary <a class="btn"> again. */
+.btn.pending{
+  background:transparent;color:var(--grey);border:1px dashed var(--grey);
+  cursor:default;
+}
+.btn.pending:hover{background:transparent;color:var(--grey);border-color:var(--grey)}
+
+/* ============================================================
+   THE MARK — square (intent) · gold dot (latency) · circle (outcome)
+   Ink shapes on cream; holes punch through to the background.
+   ============================================================ */
+.mark{display:flex;align-items:center;--shape:var(--ink);--hole:var(--cream);--dot:var(--gold)}
+.mark .sq,.mark .ci{position:relative;background:var(--shape)}
+.mark .ci{border-radius:50%}
+.mark .sq::after,.mark .ci::after{
+  content:"";position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);background:var(--hole);
+}
+.mark .sq::after{border-radius:50%}   /* square carries a circular hole */
+                                      /* circle carries a square hole  */
+.mark .dots{display:flex;align-items:center;padding:0 .55em}
+.mark .dots b{background:var(--dot);border-radius:50%}
+/* small — header */
+.mark.m-sm .sq{width:26px;height:26px}
+.mark.m-sm .ci{width:28px;height:28px}
+.mark.m-sm .sq::after{width:10px;height:10px}
+.mark.m-sm .ci::after{width:9px;height:9px}
+.mark.m-sm .dots b{width:8px;height:8px}
+/* medium — footer / feature */
+.mark.m-md .sq{width:40px;height:40px}
+.mark.m-md .ci{width:43px;height:43px}
+.mark.m-md .sq::after{width:15px;height:15px}
+.mark.m-md .ci::after{width:13px;height:13px}
+.mark.m-md .dots b{width:12px;height:12px}
+
+.wordmark{
+  font-family:var(--serif-display);font-weight:400;font-size:20px;
+  letter-spacing:.3em;text-transform:uppercase;color:var(--ink);white-space:nowrap;
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.site-head{border-bottom:1px solid var(--hairline);background:var(--cream)}
+.site-head .wrap{
+  display:flex;align-items:center;gap:20px;
+  padding-top:20px;padding-bottom:20px;
+}
+.brand{display:flex;align-items:center;gap:14px;color:var(--ink)}
+.brand:hover{color:var(--ink)}
+.site-nav{margin-left:auto;display:flex;align-items:center;gap:28px}
+.site-nav a{
+  font-family:var(--sans);font-weight:500;font-size:12px;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--ink);
+  padding:6px 0;border-bottom:2px solid transparent;
+}
+.site-nav a:hover{color:var(--orange-deep)}
+.site-nav a.current{color:var(--orange);border-bottom-color:var(--orange)}
+.site-nav .btn{margin-left:8px}
+.nav-toggle{
+  display:none;margin-left:auto;background:none;border:1px solid var(--hairline);
+  border-radius:2px;padding:10px 12px;cursor:pointer;
+}
+.nav-toggle span{display:block;width:20px;height:2px;background:var(--ink);margin:4px 0}
+
+/* ============================================================
+   HERO — burnt-orange circle backdrop, cream cutout card overlapping
+   ============================================================ */
+/* The hero carries no box. Type sits directly on the paper — the boxed
+   hero card was the single thing making this read as a template. */
+.hero{position:relative;overflow:hidden;padding:100px 0 112px}
+.hero .wrap{
+  position:relative;display:grid;gap:64px;align-items:center;
+  grid-template-columns:minmax(0,1fr) 300px;
+}
+.hero-card{position:relative}
+.hero-card .eyebrow{display:block;margin-bottom:22px}
+.hero-card .sub{max-width:44ch;font-size:19px;color:#43392d}
+.hero-card .tagline{display:block;margin:18px 0 34px;font-size:20px}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap}
+.hero .dots-field{width:190px;height:150px;top:34px;right:-30px;z-index:0}
+
+/* the 30s film, portrait as shot, taped over the orange circle */
+.hero-film{position:relative}
+.hero-film::before{
+  content:"";position:absolute;z-index:0;left:52%;top:50%;
+  transform:translate(-50%,-50%);
+  width:438px;height:438px;border-radius:50%;background:var(--orange);
+}
+.hero-film .film{position:relative;z-index:2;transform:rotate(-1.4deg)}
+
+/* Page heroes (interior pages) */
+.page-hero{position:relative;overflow:hidden;padding:76px 0 62px;border-bottom:1px solid var(--hairline)}
+/* a halftone field rather than a cropped disc — the clipped quarter-circle read
+   as an accident, and it fought any collage plate placed beside it */
+.page-hero::before{
+  content:"";position:absolute;top:44px;right:34px;width:200px;height:160px;
+  background-image:radial-gradient(var(--orange) 1.6px,transparent 1.6px);
+  background-size:13px 13px;opacity:.5;
+}
+/* where a collage plate already supplies the orange circle, the CSS one
+   would sit behind it as a second, clashing disc */
+.page-hero.with-art::before{display:none}
+.page-hero .wrap{position:relative}
+.page-hero p{max-width:60ch}
+
+/* ============================================================
+   LATENCY GAP BAND
+   ============================================================ */
+.gap-band{border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline)}
+.gap-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:36px;margin-top:40px}
+.gap-cols > div{border-top:1px solid var(--hairline);padding-top:22px}
+.gap-cols .glyph{height:26px;display:flex;align-items:center;margin-bottom:14px}
+.glyph .g-sq{width:20px;height:20px;border:2px solid var(--ink)}
+.glyph .g-dot{width:16px;height:16px;border-radius:50%;background:var(--gold)}
+.glyph .g-ci{width:20px;height:20px;border:2px solid var(--ink);border-radius:50%}
+.gap-cols h3{font-size:20px;margin-bottom:8px}
+.gap-cols p{font-size:16px;color:#4a4136;margin:0}
+
+/* ============================================================
+   INDEX CARDS  (cream card, hairline border, slight paper feel)
+   ============================================================ */
+.card{
+  background:linear-gradient(178deg,var(--card) 0%,var(--cream) 60%);
+  border:1px solid var(--grey);border-radius:2px;
+  padding:30px 28px;
+  box-shadow:0 1px 0 rgba(37,29,21,.10),3px 4px 0 rgba(37,29,21,.05);
+  display:flex;flex-direction:column;gap:12px;
+}
+.card .label{border-bottom:1px solid var(--hairline);padding-bottom:10px}
+.card h3{margin:0}
+.card ul{list-style:none;margin:0;padding:0;font-size:16px}
+.card ul li{padding:7px 0;border-bottom:1px dashed var(--hairline)}
+.card ul li::before{content:"·  ";color:var(--grey)}
+.card .price{font-family:var(--serif-display);font-weight:400;font-size:22px;margin-top:auto;padding-top:10px}
+.card .btn{align-self:flex-start}
+.card .tie{font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase}
+
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+
+/* ============================================================
+   FILM — video framed as a filed object, not a media player
+   ============================================================ */
+.film{
+  position:relative;
+  background:linear-gradient(178deg,var(--card) 0%,var(--cream) 60%);
+  border:1px solid var(--grey);border-radius:2px;
+  padding:14px 14px 0;
+  box-shadow:0 1px 0 rgba(37,29,21,.10),4px 5px 0 rgba(37,29,21,.05);
+}
+.film video{
+  display:block;width:100%;height:auto;
+  background:var(--ink);border-radius:1px;
+}
+.film figcaption{
+  display:flex;justify-content:space-between;align-items:baseline;gap:18px;
+  margin-top:14px;padding:12px 2px 15px;border-top:1px solid var(--hairline);
+}
+.film figcaption .t{font-family:var(--serif-display);font-weight:400;font-size:17px;line-height:1.3}
+.film figcaption .runtime{white-space:nowrap}
+.film.wide{max-width:840px;margin:34px 0 0}
+
+/* tape — a real strip with torn ends and aged cellophane grain, not a
+   rounded rectangle. The flat CSS version was one of the tells. */
+.film.taped::before,.film.taped::after{
+  content:"";position:absolute;z-index:3;width:122px;height:32px;
+  background:url("media/tape.png") center/100% 100% no-repeat;
+  filter:drop-shadow(0 1px 1.5px rgba(37,29,21,.18));
+}
+.film.taped::before{top:-15px;left:-30px;transform:rotate(-32deg)}
+.film.taped::after{bottom:-13px;right:-32px;transform:rotate(-31deg)}
+
+/* ============================================================
+   COLLAGE ART — cutouts from the brand bank, soft-edged so they
+   sit on the paper rather than in a box
+   ============================================================ */
+.art{display:block;width:100%;height:auto}
+.art-row{display:grid;grid-template-columns:1fr 320px;gap:56px;align-items:center}
+.art-row.flip{grid-template-columns:320px 1fr}
+.art-row.flip .art-fig{order:-1}
+.art-fig{position:relative;margin:0}
+
+/* ============================================================
+   QUOTE BAND — full-bleed orange, one line, held
+   ============================================================ */
+/* Torn top and bottom, so the band reads as a strip of coloured paper laid on
+   the page rather than a CSS rectangle. Three mask layers add together: the
+   tear strip at each edge, and a plain block filling the middle. */
+.quote-band{
+  position:relative;overflow:hidden;
+  background:var(--orange);color:var(--cream);
+  padding:96px 0 104px;text-align:center;
+}
+.quote-band,.letter-band{
+  -webkit-mask-image:url("media/tear-top.png"),linear-gradient(#000,#000),url("media/tear-bottom.png");
+  -webkit-mask-size:1600px 44px,100% calc(100% - 80px),1600px 44px;
+  -webkit-mask-position:left top,left 40px,left bottom;
+  -webkit-mask-repeat:repeat-x,no-repeat,repeat-x;
+  mask-image:url("media/tear-top.png"),linear-gradient(#000,#000),url("media/tear-bottom.png");
+  mask-size:1600px 44px,100% calc(100% - 80px),1600px 44px;
+  mask-position:left top,left 40px,left bottom;
+  mask-repeat:repeat-x,no-repeat,repeat-x;
+}
+.quote-band .dots-field{
+  width:200px;height:160px;left:-24px;top:22px;
+  background-image:radial-gradient(rgba(242,237,222,.5) 1.6px,transparent 1.6px);
+  opacity:1;
+}
+.quote-band blockquote{
+  position:relative;margin:0 auto;max-width:22em;
+  font-family:var(--serif-display);font-weight:300;font-style:italic;
+  font-size:clamp(23px,3.1vw,33px);line-height:1.45;
+}
+.quote-band .ellipsis{justify-content:center;margin-top:26px}
+.quote-band .ellipsis span{background:rgba(242,237,222,.55)}
+/* gold on burnt orange is neither legible nor within the ≤3% gold rule —
+   the centre dot goes cream on this band */
+.quote-band .ellipsis b{background:var(--cream)}
+
+/* ============================================================
+   PROOF GRID
+   ============================================================ */
+.proof{border-top:1px solid var(--hairline)}
+.proof-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:36px}
+.proof-grid > div{border-top:2px solid var(--orange);padding-top:18px}
+.proof-grid .big{font-family:var(--serif-display);font-weight:300;font-size:30px;line-height:1.2;margin-bottom:8px}
+
+/* ============================================================
+   NEWSLETTER BAR — orange band
+   ============================================================ */
+.letter-band{background:var(--orange);color:var(--cream);padding:92px 0 96px}
+.letter-band h2{color:var(--cream)}
+.letter-band p{max-width:52ch;color:#F7E9DC}
+/* Beehiiv injects its own markup here and we do not control its styling.
+   Cap the width so it cannot sprawl across the band. */
+.letter-embed{margin-top:26px;max-width:520px}
+.letter-embed iframe{max-width:100%!important}
+.letter-alt{margin:18px 0 0;font-size:15.5px;color:#F7E9DC}
+.letter-alt a{color:var(--cream);text-decoration:underline;text-underline-offset:3px}
+.letter-alt a:hover{color:#fff}
+.letter-form{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.letter-form input[type=email]{
+  flex:1 1 260px;min-width:0;background:var(--cream);color:var(--ink);
+  border:1px solid var(--cream);border-radius:2px;padding:14px 16px;
+  font-family:var(--serif-body);font-size:16px;
+}
+.letter-form input[type=email]:focus{outline:2px solid var(--ink)}
+
+/* ============================================================
+   SCRIPT LIST (vault) — table-like filed rows
+   ============================================================ */
+.filed-list{border-top:1px solid var(--hairline);margin-top:32px}
+.filed-row{
+  display:grid;grid-template-columns:1fr auto auto;gap:20px;align-items:center;
+  padding:18px 4px;border-bottom:1px solid var(--hairline);
+}
+.filed-row .t{font-family:var(--serif-display);font-weight:400;font-size:20px}
+.filed-row .d{font-size:15px;color:#4a4136;margin-top:2px}
+.filed-row .p{font-family:var(--serif-display);font-size:20px;white-space:nowrap}
+
+/* Note band */
+.note-band{
+  border:1px solid var(--grey);border-left:4px solid var(--orange);
+  background:linear-gradient(178deg,var(--card),var(--cream));
+  padding:26px 30px;font-family:var(--serif-display);font-style:italic;font-size:21px;
+}
+
+/* ============================================================
+   WORK PAGE
+   ============================================================ */
+.tier .price{font-size:26px;line-height:1.25}
+/* the unit belongs under the figure, not orphaned across a line break */
+.tier .price .meta{display:block;margin-top:4px}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:36px;counter-reset:step}
+.steps > div{border-top:1px solid var(--hairline);padding-top:18px;counter-increment:step}
+.steps > div::before{
+  content:"0" counter(step);display:block;
+  font-family:var(--sans);font-weight:600;font-size:11px;letter-spacing:.2em;color:var(--orange);margin-bottom:10px;
+}
+.steps h3{font-size:21px;margin-bottom:6px}
+.steps p{font-size:15.5px;color:#4a4136;margin:0}
+.lens{
+  margin-top:44px;padding:22px 26px;border:1px solid var(--hairline);
+  font-family:var(--sans);font-weight:500;font-size:12px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--grey);text-align:center;
+}
+.lens b{color:var(--orange);font-weight:600}
+.embed-ph{
+  border:1px dashed var(--grey);padding:44px 30px;text-align:center;margin-top:28px;
+  font-family:var(--sans);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--grey);
+}
+
+/* ============================================================
+   ESSAYS
+   ============================================================ */
+.filter{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0 40px}
+.filter button{
+  font-family:var(--sans);font-weight:600;font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  background:none;border:1px solid var(--hairline);border-radius:2px;color:var(--grey);
+  padding:9px 16px;cursor:pointer;transition:all .15s ease;
+}
+.filter button:hover{color:var(--orange-deep);border-color:var(--orange-deep)}
+.filter button.active{background:var(--orange);border-color:var(--orange);color:var(--cream)}
+.essay-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.essay-card .head-row{display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid var(--hairline);padding-bottom:10px}
+.essay-card h3{font-size:23px}
+.essay-card h3 a{color:var(--ink)}
+.essay-card h3 a:hover{color:var(--orange-deep)}
+.essay-card .dek{font-size:16px;color:#4a4136;margin:0}
+.essay-card .foot-row{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-top:auto;padding-top:8px}
+
+/* ============================================================
+   ABOUT
+   ============================================================ */
+.pullquote{
+  font-family:var(--serif-display);font-weight:300;font-style:italic;
+  font-size:clamp(22px,2.6vw,30px);line-height:1.5;max-width:34em;
+  border-left:4px solid var(--orange);padding-left:28px;margin:8px 0;
+}
+.founder{max-width:60ch}
+.beliefs{list-style:none;margin:28px 0 0;padding:0;border-top:1px solid var(--hairline);counter-reset:belief}
+.beliefs li{
+  counter-increment:belief;display:flex;gap:22px;align-items:baseline;
+  padding:18px 4px;border-bottom:1px solid var(--hairline);
+  font-family:var(--serif-display);font-weight:300;font-size:21px;
+}
+.beliefs li::before{
+  content:"0" counter(belief);
+  font-family:var(--sans);font-weight:600;font-size:11px;letter-spacing:.2em;color:var(--orange);
+}
+
+/* ============================================================
+   FOOTER — ink grounding block
+   ============================================================ */
+.site-foot{
+  background:var(--ink);color:var(--cream);padding:96px 0 56px;margin-top:96px;
+  -webkit-mask-image:url("media/tear-top.png"),linear-gradient(#000,#000);
+  -webkit-mask-size:1600px 44px,100% calc(100% - 40px);
+  -webkit-mask-position:left top,left 40px;
+  -webkit-mask-repeat:repeat-x,no-repeat;
+  mask-image:url("media/tear-top.png"),linear-gradient(#000,#000);
+  mask-size:1600px 44px,100% calc(100% - 40px);
+  mask-position:left top,left 40px;
+  mask-repeat:repeat-x,no-repeat;
+}
+.site-foot .wrap{display:flex;flex-direction:column;align-items:center;text-align:center;gap:26px}
+.site-foot .mark{--shape:var(--cream);--hole:var(--ink);--dot:var(--cream)}
+.ellipsis{display:flex;align-items:center;gap:14px}
+.ellipsis span{width:5px;height:5px;border-radius:50%;background:var(--grey)}
+.ellipsis b{width:10px;height:10px;border-radius:50%;background:var(--gold)}
+.site-foot .bio{max-width:52ch;font-size:15.5px;color:#CFC7B8;margin:0}
+.foot-nav{display:flex;gap:26px;flex-wrap:wrap;justify-content:center}
+.foot-nav a{
+  font-family:var(--sans);font-weight:500;font-size:11px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--cream);
+}
+.foot-nav a:hover{color:var(--orange)}
+.foot-sig{font-family:var(--sans);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--grey)}
+
+/* ============================================================
+   MOBILE STICKY CTA
+   ============================================================ */
+.sticky-cta{
+  display:none;position:fixed;left:0;right:0;bottom:0;z-index:60;
+  background:var(--ink);padding:12px 16px;
+  border-top:1px solid rgba(242,237,222,.15);
+}
+.sticky-cta .btn{display:block;text-align:center;width:100%}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width:960px){
+  .wordmark{display:none}
+  .grid-3{grid-template-columns:1fr 1fr}
+  .hero .wrap{grid-template-columns:1fr;gap:56px}
+  .hero-card{max-width:640px}
+  .hero-film{max-width:300px;margin:0 auto}
+  .hero .dots-field{display:none}
+  .art-row,.art-row.flip{grid-template-columns:1fr;gap:34px}
+  .art-row.flip .art-fig{order:0}
+  .art-fig{max-width:300px;margin-left:auto;margin-right:auto}
+}
+@media (max-width:760px){
+  section{padding:52px 0}
+  .nav-toggle{display:block}
+  .site-nav{
+    display:none;position:absolute;left:0;right:0;top:100%;z-index:50;
+    flex-direction:column;align-items:flex-start;gap:0;
+    background:var(--cream);border-bottom:1px solid var(--hairline);
+    padding:10px 24px 22px;
+  }
+  .site-nav.open{display:flex}
+  .site-nav a{padding:12px 0;width:100%;border-bottom:1px solid var(--hairline)}
+  .site-nav a.current{border-bottom-color:var(--orange)}
+  .site-nav .btn{margin:16px 0 0}
+  .site-head{position:relative}
+  .hero{padding:64px 0 72px}
+  .hero-film::before{width:340px;height:340px}
+  .gap-cols,.grid-2,.grid-3,.proof-grid,.essay-grid{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr 1fr}
+  .filed-row{grid-template-columns:1fr;gap:8px}
+  .filed-row .btn{justify-self:start}
+  .sticky-cta{display:block}
+  body{padding-bottom:72px}
+  .site-foot{margin-top:64px}
+}
+@media (max-width:480px){
+  .steps{grid-template-columns:1fr}
+}
