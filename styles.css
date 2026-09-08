@@ -1,36 +1,31 @@
 /* ============================================================
    THE HUMAN LATENCY — Edition 2.0 shared stylesheet
    Warm paper. Calm, editorial, archival, fast.
-   Palette: 60% cream / 25% burnt orange / 10% ink / <=4% grey / <=3% gold
+   Palette (settled 2026-09-08): paper / ink / ONE gold pin. Bands are ink,
+   never a flood of accent. The gold pin is the human and is ONE object per
+   view; flat gold at text size, deep gold for text links. Burnt orange is
+   retired. Source: My Life Vault/15-Branding/The Human Latency/brand.json
    ============================================================ */
 
 :root{
-  /* aged manual stock — yellower than the brand guide's cream, on Aye's call
-     2026-08-15. The guide still says #F1EBDC; see CLAUDE.md before reverting. */
-  --cream:#EFE5CD;
-  --card:#F5EDD8;
-  --orange:#C05B2B;
-  --orange-deep:#A3491F;
+  --cream:#EFE5CD;          /* Paper */
+  --card:#F6EFDD;
+  --accent:#B9902C;         /* the gold pin, shapes and fills */
+  --accent-deep:#866C27;    /* deep gold, for text on paper (contrast) */
+  --seam:#4A4136;
+  --people:#D8D6A6;         /* People desk wash, band only */
+  --enterprise:#24405E;     /* Enterprise desk, band only */
   /* the grain, reusable — any coloured surface should carry it too, or it
      reads as flat plastic sitting on top of textured paper */
   --grain:url("media/paper.jpg");
   --ink:#251D15;
-  --gold:#B9902C;
-  --grey:#8B857A;
+  --gold:var(--accent);
+  --grey:#9C927E;           /* Latency Grey */
   --hairline:rgba(37,29,21,.16);
   --serif-display:"Fraunces",Georgia,"Times New Roman",serif;
   --serif-body:"Spectral",Georgia,"Times New Roman",serif;
   --sans:"Inter",system-ui,-apple-system,Arial,sans-serif;
 }
-
-/* ---------- accent themes (preview) ----------
-   Everything accent-coloured resolves through --orange / --orange-deep, so one
-   variable swap recolours the whole site. The collage cutouts carry their
-   accent baked into the pixels, so each theme also has its own recoloured set
-   of art files — theme.js swaps those in alongside. */
-[data-accent="teal"] {--orange:#2E8F8B;--orange-deep:#226E6B}
-[data-accent="moss"] {--orange:#67824C;--orange-deep:#4F663A}
-[data-accent="ochre"]{--orange:#A58833;--orange-deep:#866C27}
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -51,8 +46,8 @@ body{
   -webkit-font-smoothing:antialiased;
 }
 img{max-width:100%}
-a{color:var(--orange);text-decoration:none}
-a:hover{color:var(--orange-deep)}
+a{color:var(--accent-deep);text-decoration:none}
+a:hover{color:var(--ink)}
 p{margin:0 0 1em}
 ul,ol{margin:0 0 1em 1.2em}
 h1,h2,h3{font-family:var(--serif-display);font-weight:300;line-height:1.15;margin:0 0 .5em}
@@ -60,15 +55,15 @@ h1{font-size:clamp(38px,5.6vw,62px);line-height:1.06;letter-spacing:-.005em}
 h2{font-size:clamp(27px,3.6vw,38px)}
 h3{font-size:22px}
 .tagline{font-family:var(--serif-display);font-style:italic;font-weight:300;color:var(--grey);letter-spacing:.04em}
-/* the headline turns orange where the sentence turns — intent in ink,
-   consequence in burnt orange. one sentence, two temperatures. */
-.turn{color:var(--orange)}
+/* the headline turns gold where the sentence turns — intent in ink,
+   consequence in deep gold. one sentence, two temperatures. */
+.turn{color:var(--accent-deep)}
 
 /* halftone dot field — the printed-matter texture from the brand plates */
 .dots-field{
   position:absolute;pointer-events:none;
-  background-image:radial-gradient(var(--orange) 1.6px,transparent 1.6px);
-  background-size:13px 13px;opacity:.5;
+  background-image:radial-gradient(var(--ink) 1.6px,transparent 1.6px);
+  background-size:13px 13px;opacity:.18;
 }
 
 /* rule · gold dot · rule — the section divider from the brand mockup */
@@ -86,7 +81,7 @@ section{padding:72px 0}
   font-family:var(--sans);font-weight:600;font-size:11px;
   letter-spacing:.2em;text-transform:uppercase;color:var(--grey);
 }
-.label.orange{color:var(--orange)}
+.label.accent{color:var(--accent-deep)}
 .meta{font-family:var(--sans);font-weight:500;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--grey)}
 
 /* ---------- buttons ---------- */
@@ -94,17 +89,17 @@ section{padding:72px 0}
   display:inline-block;cursor:pointer;
   font-family:var(--sans);font-weight:600;font-size:12px;
   letter-spacing:.18em;text-transform:uppercase;
-  background:var(--orange);color:var(--cream);
-  border:1px solid var(--orange);
+  background:var(--accent);color:var(--ink);
+  border:1px solid var(--accent);
   padding:14px 26px;border-radius:2px;
   transition:background .15s ease,border-color .15s ease,color .15s ease;
 }
-.btn:hover{background:var(--orange-deep);border-color:var(--orange-deep);color:var(--cream)}
+.btn:hover{background:var(--accent-deep);border-color:var(--accent-deep);color:var(--cream)}
 .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--ink)}
-.btn.ghost:hover{color:var(--orange-deep);border-color:var(--orange-deep);background:transparent}
+.btn.ghost:hover{color:var(--accent-deep);border-color:var(--accent-deep);background:transparent}
 .btn.small{padding:10px 18px;font-size:11px}
 .btn.inverse{background:var(--ink);border-color:var(--ink);color:var(--cream)}
-.btn.inverse:hover{background:#3a2f22;border-color:#3a2f22}
+.btn.inverse:hover{background:var(--seam);border-color:var(--seam)}
 /* Not-yet-live actions. A button that 404s costs more trust than one that
    admits it isn't ready — these stay until the real Stripe/Cal/GitHub links
    exist, then become ordinary <a class="btn"> again. */
@@ -163,8 +158,8 @@ section{padding:72px 0}
   letter-spacing:.18em;text-transform:uppercase;color:var(--ink);
   padding:6px 0;border-bottom:2px solid transparent;
 }
-.site-nav a:hover{color:var(--orange-deep)}
-.site-nav a.current{color:var(--orange);border-bottom-color:var(--orange)}
+.site-nav a:hover{color:var(--accent-deep)}
+.site-nav a.current{color:var(--ink);border-bottom-color:var(--accent)}
 .site-nav .btn{margin-left:8px}
 .nav-toggle{
   display:none;margin-left:auto;background:none;border:1px solid var(--hairline);
@@ -173,7 +168,7 @@ section{padding:72px 0}
 .nav-toggle span{display:block;width:20px;height:2px;background:var(--ink);margin:4px 0}
 
 /* ============================================================
-   HERO — burnt-orange circle backdrop, cream cutout card overlapping
+   HERO — ink circle (the outcome shape) behind the film, type on paper
    ============================================================ */
 /* The hero carries no box. Type sits directly on the paper — the boxed
    hero card was the single thing making this read as a template. */
@@ -189,13 +184,13 @@ section{padding:72px 0}
 .cta-row{display:flex;gap:14px;flex-wrap:wrap}
 .hero .dots-field{width:190px;height:150px;top:34px;right:-30px;z-index:0}
 
-/* the 30s film, portrait as shot, taped over the orange circle */
+/* the 30s film, portrait as shot, taped over the ink circle */
 .hero-film{position:relative}
 .hero-film::before{
   content:"";position:absolute;z-index:0;left:52%;top:50%;
   transform:translate(-50%,-50%);
   width:438px;height:438px;border-radius:50%;
-  background-color:var(--orange);
+  background-color:var(--ink);
   background-image:var(--grain);background-size:560px 560px;
   background-blend-mode:multiply;
 }
@@ -207,10 +202,10 @@ section{padding:72px 0}
    as an accident, and it fought any collage plate placed beside it */
 .page-hero::before{
   content:"";position:absolute;top:44px;right:34px;width:200px;height:160px;
-  background-image:radial-gradient(var(--orange) 1.6px,transparent 1.6px);
-  background-size:13px 13px;opacity:.5;
+  background-image:radial-gradient(var(--ink) 1.6px,transparent 1.6px);
+  background-size:13px 13px;opacity:.18;
 }
-/* where a collage plate already supplies the orange circle, the CSS one
+/* where a collage plate already supplies a circle, the CSS one
    would sit behind it as a second, clashing disc */
 .page-hero.with-art::before{display:none}
 .page-hero .wrap{position:relative}
@@ -294,14 +289,14 @@ section{padding:72px 0}
 .art-fig{position:relative;margin:0}
 
 /* ============================================================
-   QUOTE BAND — full-bleed orange, one line, held
+   QUOTE BAND — full-bleed ink, one line, held
    ============================================================ */
 /* Torn top and bottom, so the band reads as a strip of coloured paper laid on
    the page rather than a CSS rectangle. Three mask layers add together: the
    tear strip at each edge, and a plain block filling the middle. */
 .quote-band{
   position:relative;overflow:hidden;
-  background-color:var(--orange);color:var(--cream);
+  background-color:var(--ink);color:var(--cream);
   background-image:var(--grain);background-size:560px 560px;
   background-blend-mode:multiply;
   padding:96px 0 104px;text-align:center;
@@ -328,23 +323,22 @@ section{padding:72px 0}
 }
 .quote-band .ellipsis{justify-content:center;margin-top:26px}
 .quote-band .ellipsis span{background:rgba(242,237,222,.55)}
-/* gold on burnt orange is neither legible nor within the ≤3% gold rule —
-   the centre dot goes cream on this band */
-.quote-band .ellipsis b{background:var(--cream)}
+/* the centre dot is the pin: the one gold object on the ink band */
+.quote-band .ellipsis b{background:var(--accent)}
 
 /* ============================================================
    PROOF GRID
    ============================================================ */
 .proof{border-top:1px solid var(--hairline)}
 .proof-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:36px}
-.proof-grid > div{border-top:2px solid var(--orange);padding-top:18px}
+.proof-grid > div{border-top:2px solid var(--accent);padding-top:18px}
 .proof-grid .big{font-family:var(--serif-display);font-weight:300;font-size:30px;line-height:1.2;margin-bottom:8px}
 
 /* ============================================================
-   NEWSLETTER BAR — orange band
+   NEWSLETTER BAR — ink band
    ============================================================ */
 .letter-band{
-  background-color:var(--orange);color:var(--cream);padding:92px 0 96px;
+  background-color:var(--ink);color:var(--cream);padding:92px 0 96px;
   background-image:var(--grain);background-size:560px 560px;
   background-blend-mode:multiply;
 }
@@ -379,7 +373,7 @@ section{padding:72px 0}
 
 /* Note band */
 .note-band{
-  border:1px solid var(--grey);border-left:4px solid var(--orange);
+  border:1px solid var(--grey);border-left:4px solid var(--accent);
   background:linear-gradient(178deg,var(--card),var(--cream));
   padding:26px 30px;font-family:var(--serif-display);font-style:italic;font-size:21px;
 }
@@ -394,7 +388,7 @@ section{padding:72px 0}
 .steps > div{border-top:1px solid var(--hairline);padding-top:18px;counter-increment:step}
 .steps > div::before{
   content:"0" counter(step);display:block;
-  font-family:var(--sans);font-weight:600;font-size:11px;letter-spacing:.2em;color:var(--orange);margin-bottom:10px;
+  font-family:var(--sans);font-weight:600;font-size:11px;letter-spacing:.2em;color:var(--accent);margin-bottom:10px;
 }
 .steps h3{font-size:21px;margin-bottom:6px}
 .steps p{font-size:15.5px;color:#4a4136;margin:0}
@@ -403,7 +397,7 @@ section{padding:72px 0}
   font-family:var(--sans);font-weight:500;font-size:12px;letter-spacing:.18em;
   text-transform:uppercase;color:var(--grey);text-align:center;
 }
-.lens b{color:var(--orange);font-weight:600}
+.lens b{color:var(--accent);font-weight:600}
 .embed-ph{
   border:1px dashed var(--grey);padding:44px 30px;text-align:center;margin-top:28px;
   font-family:var(--sans);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--grey);
@@ -418,13 +412,13 @@ section{padding:72px 0}
   background:none;border:1px solid var(--hairline);border-radius:2px;color:var(--grey);
   padding:9px 16px;cursor:pointer;transition:all .15s ease;
 }
-.filter button:hover{color:var(--orange-deep);border-color:var(--orange-deep)}
-.filter button.active{background:var(--orange);border-color:var(--orange);color:var(--cream)}
+.filter button:hover{color:var(--accent-deep);border-color:var(--accent-deep)}
+.filter button.active{background:var(--accent);border-color:var(--accent);color:var(--ink)}
 .essay-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
 .essay-card .head-row{display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid var(--hairline);padding-bottom:10px}
 .essay-card h3{font-size:23px}
 .essay-card h3 a{color:var(--ink)}
-.essay-card h3 a:hover{color:var(--orange-deep)}
+.essay-card h3 a:hover{color:var(--accent-deep)}
 .essay-card .dek{font-size:16px;color:#4a4136;margin:0}
 .essay-card .foot-row{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-top:auto;padding-top:8px}
 
@@ -434,7 +428,7 @@ section{padding:72px 0}
 .pullquote{
   font-family:var(--serif-display);font-weight:300;font-style:italic;
   font-size:clamp(22px,2.6vw,30px);line-height:1.5;max-width:34em;
-  border-left:4px solid var(--orange);padding-left:28px;margin:8px 0;
+  border-left:4px solid var(--accent);padding-left:28px;margin:8px 0;
 }
 .founder{max-width:60ch}
 .beliefs{list-style:none;margin:28px 0 0;padding:0;border-top:1px solid var(--hairline);counter-reset:belief}
@@ -445,7 +439,7 @@ section{padding:72px 0}
 }
 .beliefs li::before{
   content:"0" counter(belief);
-  font-family:var(--sans);font-weight:600;font-size:11px;letter-spacing:.2em;color:var(--orange);
+  font-family:var(--sans);font-weight:600;font-size:11px;letter-spacing:.2em;color:var(--accent);
 }
 
 /* ============================================================
@@ -473,7 +467,7 @@ section{padding:72px 0}
   font-family:var(--sans);font-weight:500;font-size:11px;letter-spacing:.18em;
   text-transform:uppercase;color:var(--cream);
 }
-.foot-nav a:hover{color:var(--orange)}
+.foot-nav a:hover{color:var(--accent)}
 .foot-sig{font-family:var(--sans);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--grey)}
 
 /* ============================================================
@@ -511,7 +505,7 @@ section{padding:72px 0}
   }
   .site-nav.open{display:flex}
   .site-nav a{padding:12px 0;width:100%;border-bottom:1px solid var(--hairline)}
-  .site-nav a.current{border-bottom-color:var(--orange)}
+  .site-nav a.current{border-bottom-color:var(--accent)}
   .site-nav .btn{margin:16px 0 0}
   .site-head{position:relative}
   .hero{padding:64px 0 72px}
@@ -526,29 +520,4 @@ section{padding:72px 0}
 }
 @media (max-width:480px){
   .steps{grid-template-columns:1fr}
-}
-
-/* ============================================================
-   ACCENT PREVIEW SWITCHER — temporary, remove with theme.js
-   ============================================================ */
-.accent-pick{
-  position:fixed;left:18px;bottom:18px;z-index:70;
-  background:var(--card);border:1px solid var(--grey);border-radius:2px;
-  padding:10px 12px 11px;
-  box-shadow:0 2px 0 rgba(37,29,21,.10),4px 5px 0 rgba(37,29,21,.06);
-}
-.accent-pick .label{display:block;margin-bottom:8px;font-size:9.5px}
-.accent-row{display:flex;gap:7px}
-.accent-row button{
-  width:26px;height:26px;border-radius:50%;cursor:pointer;
-  border:1px solid rgba(37,29,21,.25);padding:0;
-  transition:transform .12s ease,box-shadow .12s ease;
-}
-.accent-row button:hover{transform:scale(1.12)}
-.accent-row button[aria-pressed="true"]{
-  box-shadow:0 0 0 2px var(--cream),0 0 0 3.5px var(--ink);
-}
-@media (max-width:760px){
-  .accent-pick{left:12px;bottom:84px;padding:8px 10px 9px}
-  .accent-row button{width:22px;height:22px}
 }
