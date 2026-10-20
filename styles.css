@@ -13,7 +13,7 @@
   --accent:#B9902C;         /* the gold pin, shapes and fills */
   --accent-deep:#866C27;    /* deep gold, for text on paper (contrast) */
   --seam:#4A4136;
-  --people:#D8D6A6;         /* People desk wash, band only */
+  --people:#E0D6A4;         /* People desk wash, band only */
   --enterprise:#24405E;     /* Enterprise desk, band only */
   /* the grain, reusable — any coloured surface should carry it too, or it
      reads as flat plastic sitting on top of textured paper */
@@ -348,6 +348,11 @@ section{padding:72px 0}
    Cap the width so it cannot sprawl across the band. */
 .letter-embed{margin-top:26px;max-width:520px}
 .letter-embed iframe{max-width:100%!important}
+/* Two Beehiiv forms side by side (People + Enterprise). Stack on narrow screens. */
+.letter-embed-grid{margin-top:26px;display:grid;grid-template-columns:1fr 1fr;gap:32px;max-width:720px}
+.letter-embed-col iframe{max-width:100%!important}
+.letter-embed-label{margin:0 0 10px;font-size:13.5px;letter-spacing:.04em;text-transform:uppercase;color:#F7E9DC;opacity:.75}
+@media (max-width:640px){.letter-embed-grid{grid-template-columns:1fr;gap:28px}}
 .letter-alt{margin:18px 0 0;font-size:15.5px;color:#F7E9DC}
 .letter-alt a{color:var(--cream);text-decoration:underline;text-underline-offset:3px}
 .letter-alt a:hover{color:#fff}
