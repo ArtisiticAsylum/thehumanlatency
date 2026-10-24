@@ -1,4 +1,7 @@
 # Not ready to be found yet. This is a request, not a lock —
 # see CLAUDE.md for why a GitHub Pages site cannot be password-protected.
+# The private studio is encrypted as well; it is listed so it stays out
+# of search even after the rest of the site opens up.
 User-agent: *
 Disallow: /
+Disallow: /studio/

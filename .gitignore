@@ -4,3 +4,8 @@ CLAUDE.md
 STRIPE-PRODUCTS.md
 _preview/
 *.zip
+
+# Private studio: source and build scripts never leave this machine.
+# Only the encrypted studio/index.html is committed.
+studio-src/
+build-studio.ps1
